@@ -21,6 +21,7 @@ define(['vendor/three', 'vendor/underscore'], function (three, _) {
     block = new three.Mesh(geometry, material);
     block.receiveShadow = true;
     block.castShadow = true;
+    block.opts = opts;
     
     block.moveTo = function(x, y, z){
       block.position.set(x, y + opts.height/2, z);
