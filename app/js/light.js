@@ -1,12 +1,11 @@
 define(['vendor/three'], function(three) {
   
-  var ambientlight = new three.AmbientLight( 0x151515, 0.1 );
+  var ambientlight = new three.AmbientLight( 0x999999, 0.3 );
   
-
   var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
   
-  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.75);
-  directionalLight.position.set( 5000, 2000, 1000 );
+  var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5);
+  directionalLight.position.set( 3000, 2000, 5000 );
   directionalLight.castShadow = true;
 
   directionalLight.shadowMapWidth = 2048;

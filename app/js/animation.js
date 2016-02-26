@@ -10,7 +10,7 @@ define(['vendor/three', 'scene', 'camera'], function (three, scene, camera) {
     renderer.gammaOutput = true;
   
     document.body.appendChild( renderer.domElement );
-
+    
     return {
       start: function(animation){
         render();
