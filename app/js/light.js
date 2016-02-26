@@ -1,6 +1,6 @@
 define(['vendor/three'], function(three) {
   
-  var ambientlight = new three.AmbientLight( 0x151515 );
+  var ambientlight = new three.AmbientLight( 0x151515, 0.1 );
   
 
   var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );

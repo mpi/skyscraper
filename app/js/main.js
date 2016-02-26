@@ -62,6 +62,18 @@ require(['vendor/three'], function (three) {
         z: 150
       }));
       scene.add(new Skyscraper({
+        base: 60,
+        height: 100,
+        x: -200,
+        z: -200
+      }));
+      scene.add(new Skyscraper({
+        base: 80,
+        height: 120,
+        x: -360,
+        z: -260
+      }));
+      scene.add(new Skyscraper({
         base: 1000,
         height: 5,
         y: -5
