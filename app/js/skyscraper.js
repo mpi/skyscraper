@@ -24,6 +24,9 @@ define(['vendor/three', 'vendor/underscore'], function (three, _) {
     block.opts = opts;
     
     block.moveTo = function(x, y, z){
+      block.opts.x = x;
+      block.opts.y = y;
+      block.opts.z = z;
       block.position.set(x, y + opts.height/2, z);
     };
     
