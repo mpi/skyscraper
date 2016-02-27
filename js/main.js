@@ -13,7 +13,7 @@ requirejs.config({
   }
 });
 
-require(['vendor/three', 'city'], function (three, city) {
+require(['vendor/three', 'city', 'vendor/underscore'], function (three, city, _) {
 
   require(['scene', 'skyscraper', 'animation', 'camera', 'light'], function (scene, Skyscraper, animation, camera, light) {
 
@@ -51,10 +51,16 @@ require(['vendor/three', 'city'], function (three, city) {
       
       city(blocks);
       blocks.forEach(function(b){ scene.add(b); });
-      
+
+      var max = _(blocks).map(function(b) {
+        var x = Math.abs(b.opts.x) + Math.abs(b.opts.base);
+        var y = Math.abs(b.opts.z) + Math.abs(b.opts.base);
+        return Math.max(x, y);
+      });
+      max = _.max(max);
       
       scene.add(new Skyscraper({
-        base: 1000,
+        base: 2*max + 50,
         height: 5,
         y: -5
       }));
@@ -69,7 +75,7 @@ require(['vendor/three', 'city'], function (three, city) {
         camera.position.setY(500);
         camera.lookAt(new three.Vector3(0, 0, 0));
 //        var sun = light[2];
-//        sun.position.applyAxisAngle(new three.Vector3(0, 1, 0), Math.PI / 360);
+//        sun.position.applyAxisAngle(new three.Vector3(0, 1, 0), -Math.PI / (2*360));
 //        sun.lookAt(new three.Vector3(0, 0, 0));
         
       }

@@ -6,25 +6,25 @@ define(['vendor/underscore'], function (_) {
     //console.log('up');
     p.y += delta;
     return p;
-  };
+  }
 
   function down(p, delta) {
     //console.log('down');
     p.y -= delta;
     return p;
-  };
+  }
 
   function left(p, delta) {
     //console.log('left');
     p.x -= delta;
     return p;
-  };
+  }
 
   function right(p, delta) {
     //console.log('right');
     p.x += delta;
     return p;
-  };
+  }
 
   return function (blocks) {
 
@@ -41,6 +41,7 @@ define(['vendor/underscore'], function (_) {
       d: 0
     });
 
+    var e;
     
     for (e = 1; e < blocks.length; e++) {
       layout(e-1, e);
@@ -61,23 +62,23 @@ define(['vendor/underscore'], function (_) {
       
       if (isValid(ahead)) {
         if (isValid(turnForward)) {
-          console.log('fwd')
+          console.log('fwd');
           layouted.push(turnForward);
           return;
         }
-        console.log('ahead')
+        console.log('ahead');
         layouted.push(ahead);
         return;
       }
       if (isValid(turnBack)) {
-        console.log('bck')
+        console.log('bck');
         layouted.push(turnBack);
         return;
       }
       
       return layout(p-1, i);
       
-    };
+    }
 
     function candidate(pr, i, x) {
 
@@ -98,10 +99,18 @@ define(['vendor/underscore'], function (_) {
 
       return dirs[c.d](c, (p.r + c.r) * 1.6);
 
-    };
+    }
 
     function isValid(c) {
-
+      
+//      if(c.x + c.r > 500 || c.x - c.r < -500){
+//        return false;
+//      }
+//      if(c.y + c.r > 500 || c.y - c.r < -500){
+//        return false;
+//      }
+      
+      var i;
       for (i = 0; i < layouted.length; i++) {
         if (colidesWith(c, layouted[i])) {
           return false;
@@ -111,7 +120,7 @@ define(['vendor/underscore'], function (_) {
         }
       }
       return true;
-    };
+    }
 
     function colidesWith(a, b) {
       if (containsPoint(a, b.x - b.r, b.y - b.r)) {
@@ -127,11 +136,11 @@ define(['vendor/underscore'], function (_) {
         return true;
       }
       return false;
-    };
+    }
 
     function containsPoint(a, x, y) {
       return (x < a.x + a.r && x > a.x - a.r) && (y < a.y + a.r && y > a.y - a.r);
-    };
+    }
 
   };
 
